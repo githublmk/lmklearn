@@ -1,0 +1,80 @@
+logging:
+  level:
+    com:
+      boot:
+        ln:
+          duridln:
+            mapper: debug
+
+spring:
+#  kafka:
+#    bootstrap-servers: localhost:9092
+  datasource:
+    druid:
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: root
+      url: jdbc:mysql://localhost:3306/bootln?characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 30000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: select  '1'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      filters: stat,wall
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: '*.js,*.gif,*.css,*.ico,*.png,/druid/*'
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        login-password: root
+        login-username: root
+        reset-enable: false
+      filter:
+        stat:
+          log-slow-sql: true
+  mail:
+    host: smtp.163.com
+    username: lmk11277121906@163.com
+    password: lmk521
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+#  redis:
+#    database: 0
+#    host: localhost
+#    prot: 6379
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+mapper:
+  mappers: com.boot.ln.duridln.config.MyMapper
+  not-empty: false
+  identity: mysql
+management:
+  server:
+    port: 8080
+  servlet:
+    context-path: /monitor
+endpoint:
+  shutdown:
+    enabled: true
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+
+

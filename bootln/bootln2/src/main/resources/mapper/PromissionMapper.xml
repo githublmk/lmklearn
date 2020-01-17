@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper  namespace="com.lmk.bootln2.mapper.PromissionMapper">
+    <select id="selectPromissionByRoleName" parameterType="String" resultType="com.lmk.bootln2.model.Promission">
+        select c.id,c.url,c.name from T_ROLE a,T_ROLE_PREMISSION b,T_PREMISSION c
+        where a.name = #{name}
+        and a.id = b.rid
+        and b.pid = c.id
+    </select>
+    <select id="selectPromissionByUserName" parameterType="String" resultType="com.lmk.bootln2.model.Promission">
+        select f.id,f.url,f.name from t_user a,t_user_role b, t_role c,T_ROLE_PREMISSION d,T_PREMISSION f
+        where a.username = #{username}
+        and a.id = b.uid
+        and b.rid = c.id
+        and c.id = d.rid
+        and d.pid = f.id
+    </select>
+</mapper>

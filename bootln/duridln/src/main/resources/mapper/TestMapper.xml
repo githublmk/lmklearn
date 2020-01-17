@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boot.ln.duridln.mapper.TestDao">
+    <insert id="add" parameterType="com.boot.ln.duridln.mode.Test">
+        insert into test(name,note) values(#{name},#{note})
+    </insert>
+    <select id="query" parameterType="com.boot.ln.duridln.mode.Test" resultType="com.boot.ln.duridln.mode.Test">
+        select * from test where 1=1
+        <if test="id!=null and id!=''" >
+            and id = #{id}
+        </if>
+        <if test="name !=null and name !=''">
+            and name like #{name}
+        </if>
+        <if test="note !=null and note !=''">
+            and note like #{note}
+        </if>
+    </select>
+    <select id="queryTestById" parameterType="String">
+        select * from test where id = #{id}
+    </select>
+</mapper>

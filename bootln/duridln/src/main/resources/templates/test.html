@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>no</th>
+        <th>id</th>
+        <th>name</th>
+        <th>note</th>
+    </tr>
+    <tr th:each="list,index :${datalist}">
+        <td th:text="${index.count}"></td>
+        <td th:text="${list.id}"></td>
+        <td th:text="${list.name}"></td>
+        <td th:text="${list.note}"></td>
+    </tr>
+</table>
+</body>
+</html>

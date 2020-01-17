@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+<input type="text" name="username">
+<input type="text" name="password">
+<button onclick="login()">登陆</button>
+</body>
+
+<script th:inline="javascript">
+
+        function login() {
+            var username = $("input[name='username']").val();
+            var password = $("input[name='password']").val();
+            $.ajax({
+                type: "post",
+                url:  + "/login",
+                data: {"username": username,"password": password},
+                dataType: "json",
+                success: function (r) {
+                    console.log(r)
+                    if (r.data == 'ok') {
+                        location.href =  '/index';
+                    } else {
+                        alert(r.data);
+                    }
+                }
+            });
+        }
+</script>
+</html>

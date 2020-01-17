@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper  namespace="com.lmk.bootln2.mapper.RoleMapper">
+    <select id="selectRoleByName" parameterType="String" resultType="com.lmk.bootln2.model.Role">
+        select c.id,c.name,c.memo from T_USER a,T_USER_ROLE b,T_ROLE c
+        where a.username = #{username}
+        and a.id = b.uid
+        and b.rid = c.id
+    </select>
+</mapper>
